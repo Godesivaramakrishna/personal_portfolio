@@ -14,8 +14,10 @@ const Certifications = () => {
             date: "Issued 2024",
             link: "https://www.credly.com/badges/1178ca1c-555b-4f01-8325-92ea53f08e66/public_url",
             icon: Award,
-            color: "from-blue-400 to-purple-500",
-            bgColor: "bg-blue-500/10",
+            color: "from-blue-400 via-purple-400 to-purple-500",
+            bgColor: "bg-gradient-to-br from-blue-500/20 to-purple-500/20",
+            iconColor: "text-blue-400",
+            borderColor: "hover:border-blue-400/50",
         },
         {
             title: "AWS Academy Graduate - Cloud Foundations",
@@ -23,8 +25,10 @@ const Certifications = () => {
             date: "Training Badge",
             link: "https://www.credly.com/badges/92e71f28-9e24-4d0f-b69c-3172ba827d26/public_url",
             icon: Award,
-            color: "from-orange-400 to-yellow-500",
-            bgColor: "bg-orange-500/10",
+            color: "from-pink-400 via-rose-400 to-sky-500",
+            bgColor: "bg-gradient-to-br from-pink-500/20 to-sky-500/20",
+            iconColor: "text-pink-400",
+            borderColor: "hover:border-pink-400/50",
         },
         {
             title: "AWS Academy Graduate - Cloud Security Builder",
@@ -32,8 +36,10 @@ const Certifications = () => {
             date: "Training Badge",
             link: "https://www.credly.com/badges/0c7972c6-8b38-4930-b9eb-ea3ebeaccd2a/public_url",
             icon: Award,
-            color: "from-red-400 to-orange-500",
-            bgColor: "bg-red-500/10",
+            color: "from-sky-400 via-cyan-400 to-pink-500",
+            bgColor: "bg-gradient-to-br from-sky-500/20 to-pink-500/20",
+            iconColor: "text-sky-400",
+            borderColor: "hover:border-sky-400/50",
         },
     ];
 
@@ -70,18 +76,18 @@ const Certifications = () => {
                             transition={{ duration: 0.6, delay: index * 0.1 }}
                             className="group"
                         >
-                            <div className="rounded-2xl p-6 border border-white/10 bg-white/5 transition-all duration-300 hover:border-white/20 hover:-translate-y-1 h-full relative overflow-hidden">
+                            <div className={`rounded-2xl p-6 border border-white/10 ${cert.borderColor} bg-white/5 transition-all duration-300 hover:border-white/20 hover:-translate-y-1 h-full relative overflow-hidden`}>
                                 <div
-                                    className={`absolute inset-0 bg-gradient-to-br ${cert.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
+                                    className={`absolute inset-0 bg-gradient-to-br ${cert.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
                                 />
 
                                 <div className="relative z-10 flex items-start gap-4">
                                     <div className={`w-12 h-12 rounded-xl ${cert.bgColor} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                                        <cert.icon className="h-6 w-6 text-white" />
+                                        <cert.icon className={`h-6 w-6 ${cert.iconColor} group-hover:scale-110 transition-transform duration-300`} />
                                     </div>
 
                                     <div>
-                                        <h3 className="font-display font-bold text-lg mb-1 group-hover:text-blue-200 transition-colors">
+                                        <h3 className={`font-display font-bold text-lg mb-1 bg-gradient-to-r ${cert.color} bg-clip-text text-transparent group-hover:opacity-90 transition-opacity`}>
                                             {cert.title}
                                         </h3>
                                         <p className="text-white/60 text-sm mb-2">{cert.issuer}</p>
