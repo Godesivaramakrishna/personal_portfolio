@@ -11,7 +11,7 @@ const Certifications = () => {
         {
             title: "Prompt Design in Vertex AI",
             issuer: "Google Cloud",
-            date: "Issued 2024",
+            date: "Issued 2025",
             link: "https://www.credly.com/badges/1178ca1c-555b-4f01-8325-92ea53f08e66/public_url",
             icon: Award,
             color: "from-blue-400 via-purple-400 to-purple-500",
