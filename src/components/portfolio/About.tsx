@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { GraduationCap, Calendar, MapPin } from "lucide-react";
+import { GraduationCap, Calendar, MapPin, Code2, Cloud, FileCode, GitBranch, Network } from "lucide-react";
 
 const About = () => {
   const ref = useRef(null);
@@ -20,6 +20,15 @@ const About = () => {
       period: "2021 – 2023",
       grade: "GPA: 7.76",
     },
+  ];
+
+  // Profile summary skills with icons and colors
+  const profileSkills = [
+    { name: "Python", icon: Code2, color: "text-yellow-400" },
+    { name: "AWS", icon: Cloud, color: "text-orange-400" },
+    { name: "AWS CloudFormation", icon: FileCode, color: "text-orange-500" },
+    { name: "Git", icon: GitBranch, color: "text-red-400" },
+    { name: "DSA", icon: Network, color: "text-cyan-400" },
   ];
 
   return (
@@ -60,22 +69,26 @@ const About = () => {
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
-                {["Python", "AWS", "AWS CloudFormation", "Git", "DSA"].map((skill, idx) => (
-                  <motion.span
-                    key={skill}
-                    initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                    animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.5 + idx * 0.1 }}
-                    whileHover={{
-                      scale: 1.08,
-                      backgroundColor: "rgba(255, 255, 255, 0.15)",
-                      borderColor: "rgba(236, 72, 153, 0.5)"
-                    }}
-                    className="px-3 py-1 rounded-full text-sm bg-white/10 text-white/80 border border-white/10 cursor-pointer transition-colors duration-300"
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
+                {profileSkills.map((skill, idx) => {
+                  const SkillIcon = skill.icon;
+                  return (
+                    <motion.span
+                      key={skill.name}
+                      initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                      animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+                      transition={{ duration: 0.4, delay: 0.5 + idx * 0.1 }}
+                      whileHover={{
+                        scale: 1.08,
+                        backgroundColor: "rgba(255, 255, 255, 0.15)",
+                        borderColor: "rgba(236, 72, 153, 0.5)"
+                      }}
+                      className="px-3 py-1.5 rounded-full text-sm bg-white/10 text-white/80 border border-white/10 cursor-pointer transition-all duration-300 flex items-center gap-1.5"
+                    >
+                      <SkillIcon className={`h-3.5 w-3.5 ${skill.color} transition-transform duration-200 group-hover:scale-110`} />
+                      {skill.name}
+                    </motion.span>
+                  );
+                })}
               </div>
             </div>
           </motion.div>
@@ -98,40 +111,40 @@ const About = () => {
                 { glowColor: "rgba(34, 211, 238, 0.7)", bgClass: "bg-gradient-to-br from-cyan-500/10 to-cyan-600/5" }
               ];
               const color = colors[index % colors.length];
-              
+
               return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                whileHover={{
-                  boxShadow: `0 0 40px ${color.glowColor}, 0 0 80px ${color.glowColor}40`,
-                  scale: 1.02
-                }}
-                className={`rounded-xl p-6 border-2 border-white/20 transition-all duration-300 cursor-pointer backdrop-blur-sm ${color.bgClass}`}
-              >
-                <h4 className="font-semibold text-lg mb-2">{edu.degree}</h4>
-                <div className="flex items-center gap-2 text-white/60 text-sm mb-2">
-                  <MapPin className="h-4 w-4 text-pink-300" />
-                  {edu.institution}
-                </div>
-                <div className="flex items-center justify-between text-sm">
-                  <span className="flex items-center gap-2 text-white/60">
-                    <Calendar className="h-4 w-4" />
-                    {edu.period}
-                  </span>
-                  <motion.span
-                    initial={{ opacity: 0, scale: 0.7 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.5, delay: 0.6 + index * 0.15 }}
-                    className="px-3 py-1 rounded-full bg-white/10 text-white/80 font-medium border border-white/20 cursor-default"
-                  >
-                    {edu.grade}
-                  </motion.span>
-                </div>
-              </motion.div>
-            );
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                  whileHover={{
+                    boxShadow: `0 0 40px ${color.glowColor}, 0 0 80px ${color.glowColor}40`,
+                    scale: 1.02
+                  }}
+                  className={`rounded-xl p-6 border-2 border-white/20 transition-all duration-300 cursor-pointer backdrop-blur-sm ${color.bgClass}`}
+                >
+                  <h4 className="font-semibold text-lg mb-2">{edu.degree}</h4>
+                  <div className="flex items-center gap-2 text-white/60 text-sm mb-2">
+                    <MapPin className="h-4 w-4 text-pink-300" />
+                    {edu.institution}
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="flex items-center gap-2 text-white/60">
+                      <Calendar className="h-4 w-4" />
+                      {edu.period}
+                    </span>
+                    <motion.span
+                      initial={{ opacity: 0, scale: 0.7 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ duration: 0.5, delay: 0.6 + index * 0.15 }}
+                      className="px-3 py-1 rounded-full bg-white/10 text-white/80 font-medium border border-white/20 cursor-default"
+                    >
+                      {edu.grade}
+                    </motion.span>
+                  </div>
+                </motion.div>
+              );
             })}
           </motion.div>
         </div>
