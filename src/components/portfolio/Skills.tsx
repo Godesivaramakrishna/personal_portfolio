@@ -1,11 +1,105 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Cloud, Code, Database, Terminal, Globe, Brain } from "lucide-react";
+import {
+  Cloud,
+  Code,
+  Database,
+  Terminal,
+  Globe,
+  Brain,
+  Code2,
+  Binary,
+  Network,
+  GitBranch,
+  Server,
+  HardDrive,
+  Zap,
+  DatabaseZap,
+  Scale,
+  TrendingUp,
+  Container,
+  Boxes,
+  Workflow,
+  FileCode,
+  Globe2,
+  Webhook,
+  Trophy,
+  Award,
+  Medal,
+  Star,
+  Table
+} from "lucide-react";
 
 const Skills = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  // Mapping of skill names to their icons
+  const skillIcons: Record<string, any> = {
+    // Programming & Data
+    "Python": Code2,
+    "NumPy": Binary,
+    "Data Structures": Network,
+    "Algorithms": GitBranch,
+    // Cloud (AWS Services)
+    "AWS EC2": Server,
+    "S3": HardDrive,
+    "Lambda": Zap,
+    "DynamoDB": Database,
+    "RDS": DatabaseZap,
+    "Load Balancer": Scale,
+    "Auto Scaling": TrendingUp,
+    "SageMaker": Brain,
+    // DevOps
+    "Docker": Container,
+    "Kubernetes": Boxes,
+    "Jenkins": Workflow,
+    "AWS CloudFormation": FileCode,
+    // Web & Data
+    "Web Scraping": Globe2,
+    "API Development": Webhook,
+    // Problem Solving
+    "LeetCode (100+)": Trophy,
+    "GeeksForGeeks (100+)": Award,
+    "CodeChef": Medal,
+    "HackerRank": Star,
+    // Databases
+    "SQL": Table,
+  };
+
+  // Mapping of skill names to their colors
+  const skillColors: Record<string, string> = {
+    // Programming & Data
+    "Python": "text-yellow-400",
+    "NumPy": "text-blue-400",
+    "Data Structures": "text-cyan-400",
+    "Algorithms": "text-green-400",
+    // Cloud (AWS Services)
+    "AWS EC2": "text-orange-400",
+    "S3": "text-orange-500",
+    "Lambda": "text-yellow-500",
+    "DynamoDB": "text-blue-500",
+    "RDS": "text-blue-600",
+    "Load Balancer": "text-purple-400",
+    "Auto Scaling": "text-green-500",
+    "SageMaker": "text-pink-400",
+    // DevOps
+    "Docker": "text-blue-500",
+    "Kubernetes": "text-blue-400",
+    "Jenkins": "text-red-500",
+    "AWS CloudFormation": "text-orange-400",
+    // Web & Data
+    "Web Scraping": "text-emerald-400",
+    "API Development": "text-teal-400",
+    // Problem Solving
+    "LeetCode (100+)": "text-yellow-500",
+    "GeeksForGeeks (100+)": "text-green-500",
+    "CodeChef": "text-amber-500",
+    "HackerRank": "text-emerald-500",
+    // Databases
+    "SQL": "text-indigo-400",
+  };
 
   const skillCategories = [
     {
@@ -16,21 +110,22 @@ const Skills = () => {
     },
     {
       icon: Cloud,
-      title: "Cloud & DevOps",
-      skills: ["AWS EC2", "S3", "Lambda", "DynamoDB", "RDS", "Load Balancer", "Auto Scaling", "SageMaker", "Terraform"],
+      title: "☁️ Cloud (AWS Services)",
+      skills: ["AWS EC2", "S3", "Lambda", "DynamoDB", "RDS", "Load Balancer", "Auto Scaling", "SageMaker"],
       color: "from-orange-500 to-yellow-500",
+    },
+    {
+      icon: Terminal,
+      title: "⚙️ DevOps",
+      skills: ["Docker", "Kubernetes", "Jenkins", "AWS CloudFormation"],
+      color: "from-purple-500 to-pink-500",
+      highlightSkill: "AWS CloudFormation",
     },
     {
       icon: Globe,
       title: "Web & Data",
       skills: ["Web Scraping", "API Development"],
       color: "from-green-500 to-emerald-500",
-    },
-    {
-      icon: Terminal,
-      title: "Tools & Platforms",
-      skills: ["Git", "GitHub", "VS Code", "Linux"],
-      color: "from-purple-500 to-pink-500",
     },
     {
       icon: Brain,
@@ -100,18 +195,28 @@ const Skills = () => {
               >
                 <category.icon className="h-6 w-6 text-white" />
               </div>
-              
+
               <h3 className="text-lg font-display font-semibold mb-4">{category.title}</h3>
-              
+
               <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, skillIndex) => (
-                  <span
-                    key={skillIndex}
-                    className="px-3 py-1.5 rounded-lg text-sm bg-white/10 text-white/70 border border-white/10 hover:border-white/30 transition-colors duration-200"
-                  >
-                    {skill}
-                  </span>
-                ))}
+                {category.skills.map((skill, skillIndex) => {
+                  const SkillIcon = skillIcons[skill];
+                  const iconColor = skillColors[skill] || "text-white/70";
+                  return (
+                    <span
+                      key={skillIndex}
+                      className={`px-3 py-1.5 rounded-lg text-sm border transition-all duration-200 flex items-center gap-1.5 group/skill ${skill === category.highlightSkill
+                          ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white border-purple-300 font-semibold"
+                          : "bg-white/10 text-white/70 border-white/10 hover:border-white/30 hover:bg-white/15"
+                        }`}
+                    >
+                      {SkillIcon && (
+                        <SkillIcon className={`h-3.5 w-3.5 transition-transform duration-200 group-hover/skill:scale-110 ${iconColor}`} />
+                      )}
+                      {skill}
+                    </span>
+                  );
+                })}
               </div>
             </motion.div>
           ))}

@@ -55,12 +55,12 @@ const About = () => {
               <p className="text-white/60 leading-relaxed">
                 Electronics and Communication Engineering student with strong interest in Cloud Computing
                 and Backend Development. Hands-on experience with AWS services, serverless architectures,
-                and infrastructure automation using Terraform. Adaptable to new environments with a
+                and infrastructure automation using AWS CloudFormation. Adaptable to new environments with a
                 problem-solving mindset and eagerness to learn.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
-                {["Python", "AWS", "Terraform", "Git", "DSA"].map((skill, idx) => (
+                {["Python", "AWS", "AWS CloudFormation", "Git", "DSA"].map((skill, idx) => (
                   <motion.span
                     key={skill}
                     initial={{ opacity: 0, scale: 0.8, y: 10 }}

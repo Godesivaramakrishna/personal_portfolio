@@ -17,6 +17,24 @@ const Certifications = () => {
             color: "from-blue-400 to-purple-500",
             bgColor: "bg-blue-500/10",
         },
+        {
+            title: "AWS Academy Graduate - Cloud Foundations",
+            issuer: "AWS Academy",
+            date: "Training Badge",
+            link: "https://www.credly.com/badges/92e71f28-9e24-4d0f-b69c-3172ba827d26/public_url",
+            icon: Award,
+            color: "from-orange-400 to-yellow-500",
+            bgColor: "bg-orange-500/10",
+        },
+        {
+            title: "AWS Academy Graduate - Cloud Security Builder",
+            issuer: "AWS Academy",
+            date: "Training Badge",
+            link: "https://www.credly.com/badges/0c7972c6-8b38-4930-b9eb-ea3ebeaccd2a/public_url",
+            icon: Award,
+            color: "from-red-400 to-orange-500",
+            bgColor: "bg-red-500/10",
+        },
     ];
 
     return (
