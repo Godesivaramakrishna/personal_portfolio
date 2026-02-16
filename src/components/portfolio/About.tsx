@@ -24,7 +24,7 @@ const About = () => {
 
   // Profile summary skills with icons and colors
   const profileSkills = [
-    { name: "Python", icon: Code2, color: "text-yellow-400" },
+    { name: "Python", icon: Code2, color: "text-blue-400" },
     { name: "AWS", icon: Cloud, color: "text-orange-400" },
     { name: "AWS CloudFormation", icon: FileCode, color: "text-orange-500" },
     { name: "Git", icon: GitBranch, color: "text-red-400" },
