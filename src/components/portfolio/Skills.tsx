@@ -146,14 +146,23 @@ const Skills = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.08,
+        delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 15,
+      }
+    },
   };
 
   return (
@@ -162,7 +171,7 @@ const Skills = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5, type: "spring", stiffness: 80 }}
           className="text-center mb-16"
         >
           <span className="text-pink-200/70 font-medium text-sm uppercase tracking-[0.3em]">Skills</span>
@@ -187,11 +196,14 @@ const Skills = () => {
             <motion.div
               key={index}
               variants={itemVariants}
-              transition={{ duration: 0.5 }}
-              className="rounded-2xl p-6 border border-white/10 bg-white/5 transition-all duration-300 group hover:-translate-y-1 hover:border-white/20"
+              whileHover={{
+                y: -8,
+                transition: { type: "spring", stiffness: 300, damping: 20 }
+              }}
+              className="rounded-2xl p-6 border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/[0.07] will-change-transform"
             >
               <div
-                className={`w-12 h-12 rounded-xl bg-gradient-to-r ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+                className={`w-12 h-12 rounded-xl bg-gradient-to-r ${category.color} flex items-center justify-center mb-4 transition-transform duration-300 will-change-transform`}
               >
                 <category.icon className="h-6 w-6 text-white" />
               </div>
@@ -203,18 +215,31 @@ const Skills = () => {
                   const SkillIcon = skillIcons[skill];
                   const iconColor = skillColors[skill] || "text-white/70";
                   return (
-                    <span
+                    <motion.span
                       key={skillIndex}
-                      className={`px-3 py-1.5 rounded-lg text-sm border transition-all duration-200 flex items-center gap-1.5 group/skill ${skill === category.highlightSkill
-                          ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white border-purple-300 font-semibold"
-                          : "bg-white/10 text-white/70 border-white/10 hover:border-white/30 hover:bg-white/15"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{
+                        delay: 0.3 + index * 0.1 + skillIndex * 0.05,
+                        type: "spring",
+                        stiffness: 150,
+                        damping: 12
+                      }}
+                      whileHover={{
+                        scale: 1.05,
+                        backgroundColor: "rgba(255, 255, 255, 0.15)",
+                        transition: { type: "spring", stiffness: 400, damping: 10 }
+                      }}
+                      className={`px-3 py-1.5 rounded-lg text-sm border transition-all duration-200 flex items-center gap-1.5 will-change-transform ${skill === category.highlightSkill
+                        ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white border-purple-300 font-semibold"
+                        : "bg-white/10 text-white/70 border-white/10 hover:border-white/30"
                         }`}
                     >
                       {SkillIcon && (
-                        <SkillIcon className={`h-3.5 w-3.5 transition-transform duration-200 group-hover/skill:scale-110 ${iconColor}`} />
+                        <SkillIcon className={`h-3.5 w-3.5 transition-transform duration-200 ${iconColor}`} />
                       )}
                       {skill}
-                    </span>
+                    </motion.span>
                   );
                 })}
               </div>

@@ -73,27 +73,41 @@ const Certifications = () => {
                             rel="noopener noreferrer"
                             initial={{ opacity: 0, y: 20 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className="group"
+                            transition={{
+                                duration: 0.5,
+                                delay: index * 0.1,
+                                type: "spring" as const,
+                                stiffness: 100,
+                                damping: 15
+                            }}
+                            whileHover={{
+                                y: -6,
+                                transition: { type: "spring" as const, stiffness: 300, damping: 20 }
+                            }}
+                            className="group will-change-transform"
                         >
-                            <div className={`rounded-2xl p-6 border border-white/10 ${cert.borderColor} bg-white/5 transition-all duration-300 hover:border-white/20 hover:-translate-y-1 h-full relative overflow-hidden`}>
+                            <div className={`rounded-2xl p-6 border border-white/10 ${cert.borderColor} bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:shadow-lg h-full relative overflow-hidden`}>
                                 <div
-                                    className={`absolute inset-0 bg-gradient-to-br ${cert.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+                                    className={`absolute inset-0 bg-gradient-to-br ${cert.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
                                 />
 
                                 <div className="relative z-10 flex items-start gap-4">
-                                    <div className={`w-12 h-12 rounded-xl ${cert.bgColor} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                                        <cert.icon className={`h-6 w-6 ${cert.iconColor} group-hover:scale-110 transition-transform duration-300`} />
-                                    </div>
+                                    <motion.div
+                                        className={`w-12 h-12 rounded-xl ${cert.bgColor} flex items-center justify-center flex-shrink-0 will-change-transform`}
+                                        whileHover={{ scale: 1.1, rotate: 5 }}
+                                        transition={{ type: "spring" as const, stiffness: 400, damping: 15 }}
+                                    >
+                                        <cert.icon className={`h-6 w-6 ${cert.iconColor} transition-all duration-300`} />
+                                    </motion.div>
 
                                     <div>
-                                        <h3 className={`font-display font-bold text-lg mb-1 bg-gradient-to-r ${cert.color} bg-clip-text text-transparent group-hover:opacity-90 transition-opacity`}>
+                                        <h3 className={`font-display font-bold text-lg mb-1 bg-gradient-to-r ${cert.color} bg-clip-text text-transparent group-hover:opacity-90 transition-opacity duration-300`}>
                                             {cert.title}
                                         </h3>
                                         <p className="text-white/60 text-sm mb-2">{cert.issuer}</p>
                                         <div className="flex items-center gap-2 text-xs text-white/40">
                                             <span>{cert.date}</span>
-                                            <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                            <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                         </div>
                                     </div>
                                 </div>

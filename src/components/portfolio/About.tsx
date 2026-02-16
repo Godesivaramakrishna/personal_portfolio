@@ -57,9 +57,9 @@ const About = () => {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.2, type: "spring" as const, stiffness: 80 }}
           >
-            <div className="rounded-2xl p-8 border border-white/10 bg-white/5">
+            <div className="rounded-2xl p-8 border border-white/10 bg-white/5 backdrop-blur-sm">
               <h3 className="text-xl font-display font-semibold mb-4">Profile Summary</h3>
               <p className="text-white/60 leading-relaxed">
                 Electronics and Communication Engineering student with strong interest in Cloud Computing
@@ -76,15 +76,22 @@ const About = () => {
                       key={skill.name}
                       initial={{ opacity: 0, scale: 0.8, y: 10 }}
                       animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 0.5 + idx * 0.1 }}
+                      transition={{
+                        duration: 0.4,
+                        delay: 0.5 + idx * 0.08,
+                        type: "spring" as const,
+                        stiffness: 150,
+                        damping: 12
+                      }}
                       whileHover={{
                         scale: 1.08,
                         backgroundColor: "rgba(255, 255, 255, 0.15)",
-                        borderColor: "rgba(236, 72, 153, 0.5)"
+                        borderColor: "rgba(236, 72, 153, 0.5)",
+                        transition: { type: "spring" as const, stiffness: 400, damping: 10 }
                       }}
-                      className="px-3 py-1.5 rounded-full text-sm bg-white/10 text-white/80 border border-white/10 cursor-pointer transition-all duration-300 flex items-center gap-1.5"
+                      className="px-3 py-1.5 rounded-full text-sm bg-white/10 text-white/80 border border-white/10 cursor-pointer transition-all duration-200 flex items-center gap-1.5 will-change-transform"
                     >
-                      <SkillIcon className={`h-3.5 w-3.5 ${skill.color} transition-transform duration-200 group-hover:scale-110`} />
+                      <SkillIcon className={`h-3.5 w-3.5 ${skill.color} transition-transform duration-200`} />
                       {skill.name}
                     </motion.span>
                   );
