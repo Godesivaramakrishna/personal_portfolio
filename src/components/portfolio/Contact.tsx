@@ -1,18 +1,17 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Send, Mail, MapPin, Github, Linkedin, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
+import { useForm, ValidationError } from "@formspree/react";
 
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { toast } = useToast();
-  const [isLoading, setIsLoading] = useState(false);
+  const [state, handleSubmit] = useForm("mwvnwrkj");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,28 +19,11 @@ const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    // Using mailto as a fallback for email
-    const mailtoLink = `mailto:goderaja288@gmail.com?subject=${encodeURIComponent(
-      formData.subject || "Contact from Portfolio"
-    )}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    )}`;
-
-    window.location.href = mailtoLink;
-
-    setTimeout(() => {
-      setIsLoading(false);
-      toast({
-        title: "Email client opened!",
-        description: "Please send the email from your mail application.",
-      });
+  useEffect(() => {
+    if (state.succeeded) {
       setFormData({ name: "", email: "", subject: "", message: "" });
-    }, 1000);
-  };
+    }
+  }, [state.succeeded]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({
@@ -155,81 +137,90 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="lg:col-span-3"
           >
-            <form onSubmit={handleSubmit} className="rounded-2xl p-6 md:p-8 space-y-6 border border-white/10 bg-white/5">
-              <div className="grid sm:grid-cols-2 gap-6">
+            {state.succeeded ? (
+              <div className="rounded-2xl p-6 md:p-8 border border-white/10 bg-white/5">
+                <h3 className="text-xl font-display font-semibold mb-2">Thanks for reaching out!</h3>
+                <p className="text-white/60">Your message has been sent. I will get back to you soon.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="rounded-2xl p-6 md:p-8 space-y-6 border border-white/10 bg-white/5">
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Your Name</Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      placeholder="John Doe"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="bg-black/40 border-white/10 text-white placeholder:text-white/40 focus-visible:ring-white/30"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email Address</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="john@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="bg-black/40 border-white/10 text-white placeholder:text-white/40 focus-visible:ring-white/30"
+                    />
+                    <ValidationError prefix="Email" field="email" errors={state.errors} />
+                  </div>
+                </div>
+
                 <div className="space-y-2">
-                  <Label htmlFor="name">Your Name</Label>
+                  <Label htmlFor="subject">Subject</Label>
                   <Input
-                    id="name"
-                    name="name"
-                    placeholder="John Doe"
-                    value={formData.name}
+                    id="subject"
+                    name="subject"
+                    placeholder="Project Inquiry"
+                    value={formData.subject}
                     onChange={handleChange}
                     required
                     className="bg-black/40 border-white/10 text-white placeholder:text-white/40 focus-visible:ring-white/30"
                   />
                 </div>
+
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email Address</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="john@example.com"
-                    value={formData.email}
+                  <Label htmlFor="message">Message</Label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    placeholder="Tell me about your project..."
+                    value={formData.message}
                     onChange={handleChange}
                     required
-                    className="bg-black/40 border-white/10 text-white placeholder:text-white/40 focus-visible:ring-white/30"
+                    rows={5}
+                    className="bg-black/40 border-white/10 text-white placeholder:text-white/40 focus-visible:ring-white/30 resize-none"
                   />
+                  <ValidationError prefix="Message" field="message" errors={state.errors} />
                 </div>
-              </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="subject">Subject</Label>
-                <Input
-                  id="subject"
-                  name="subject"
-                  placeholder="Project Inquiry"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="bg-black/40 border-white/10 text-white placeholder:text-white/40 focus-visible:ring-white/30"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="message">Message</Label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  placeholder="Tell me about your project..."
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="bg-black/40 border-white/10 text-white placeholder:text-white/40 focus-visible:ring-white/30 resize-none"
-                />
-              </div>
-
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full bg-gradient-to-r from-pink-400 to-blue-400 text-black font-semibold hover:from-pink-300 hover:to-blue-300 transition-opacity"
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    Opening Mail Client...
-                  </>
-                ) : (
-                  <>
-                    <Send className="mr-2 h-5 w-5" />
-                    Send Message
-                  </>
-                )}
-              </Button>
-            </form>
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full bg-gradient-to-r from-pink-400 to-blue-400 text-black font-semibold hover:from-pink-300 hover:to-blue-300 transition-opacity"
+                  disabled={state.submitting}
+                >
+                  {state.submitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="mr-2 h-5 w-5" />
+                      Send Message
+                    </>
+                  )}
+                </Button>
+              </form>
+            )}
           </motion.div>
         </div>
       </div>
