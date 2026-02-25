@@ -94,7 +94,7 @@ const Navbar = () => {
                 className="hidden md:flex bg-gradient-to-r from-pink-400 to-blue-400 text-black font-medium hover:from-pink-300 hover:to-blue-300"
                 onClick={() => scrollToSection("#contact")}
               >
-                Hire Me
+                Get in Touch
               </Button>
             </div>
           </div>
@@ -123,10 +123,10 @@ const Navbar = () => {
                   </button>
                 ))}
                 <Button
-                  className="w-full mt-4 bg-gradient-to-r from-pink-400 to-blue-400 text-black font-medium hover:from-pink-300 hover:to-blue-300"
+                  className="w-full mt-2 bg-gradient-to-r from-pink-400 to-blue-400 text-black font-medium hover:from-pink-300 hover:to-blue-300"
                   onClick={() => scrollToSection("#contact")}
                 >
-                  Hire Me
+                  Get in Touch
                 </Button>
               </div>
             </div>
