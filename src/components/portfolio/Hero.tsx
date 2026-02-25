@@ -8,13 +8,13 @@ const Hero = () => {
       <div className="absolute inset-0 bg-grid opacity-10" />
       <div className="absolute inset-0 noise" />
 
-      <div className="container relative z-10 px-4 sm:px-6 py-28">
+      <div className="container relative z-10 px-4 sm:px-6 py-20 sm:py-24 md:py-28">
         {/* Top meta row */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="grid gap-6 lg:grid-cols-3 text-sm uppercase tracking-[0.35em] text-white/60 mb-16"
+          className="grid gap-4 sm:gap-6 lg:grid-cols-3 text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.35em] text-white/60 mb-12 sm:mb-16"
         >
           <div>
             <p className="font-mono bg-gradient-to-r from-pink-300 to-blue-300 bg-clip-text text-transparent">
@@ -41,14 +41,14 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] items-center">
+        <div className="grid gap-8 sm:gap-12 lg:grid-cols-[1.2fr_1fr] items-center">
           {/* Left content */}
           <div>
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-semibold leading-[1.05] uppercase"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-semibold leading-[1.1] uppercase"
             >
               I bring the
               <span className="block mt-2 bg-gradient-to-r from-pink-300 to-blue-300 bg-clip-text text-transparent">
@@ -62,7 +62,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-6 text-lg text-white/70 max-w-xl"
+              className="mt-4 sm:mt-6 text-base sm:text-lg text-white/70 max-w-xl"
             >
               <span className="bg-gradient-to-r from-pink-300 to-blue-300 bg-clip-text text-transparent font-medium">
                 Cloud & Backend Developer
@@ -75,23 +75,23 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-8 flex flex-wrap items-center gap-4"
+              className="mt-6 sm:mt-8 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4"
             >
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-pink-400 to-blue-400 text-black hover:from-pink-300 hover:to-blue-300 font-semibold px-8"
+                className="bg-gradient-to-r from-pink-400 to-blue-400 text-black hover:from-pink-300 hover:to-blue-300 font-semibold px-6 sm:px-8 w-full sm:w-auto"
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               >
-                <Mail className="mr-2 h-5 w-5" />
+                <Mail className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                 Talk to Me
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-blue-300/50 text-blue-200 hover:bg-blue-500/10 font-semibold px-8"
+                className="border-blue-300/50 text-blue-200 hover:bg-blue-500/10 font-semibold px-6 sm:px-8 w-full sm:w-auto"
                 onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
               >
-                <FileText className="mr-2 h-5 w-5" />
+                <FileText className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                 View Projects
               </Button>
             </motion.div>
@@ -100,7 +100,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-10 flex items-center gap-4"
+              className="mt-6 sm:mt-10 flex items-center gap-3 sm:gap-4"
             >
               <a
                 href="https://github.com/Godesivaramakrishna"
@@ -132,17 +132,17 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative"
+            className="relative mt-8 lg:mt-0"
           >
-            <div className="absolute -inset-6 bg-gradient-to-br from-pink-500/20 via-fuchsia-500/10 to-blue-500/20 blur-2xl" />
+            <div className="absolute -inset-4 sm:-inset-6 bg-gradient-to-br from-pink-500/20 via-fuchsia-500/10 to-blue-500/20 blur-2xl" />
             <div className="relative rounded-2xl bg-gradient-to-br from-pink-500/30 via-transparent to-blue-500/30 p-[1px]">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-3 sm:p-4">
                 <img
                   src="/profile.jpg"
                   alt="Sivaramakrishna Durgaprasad"
-                  className="w-full h-[500px] object-cover object-top rounded-xl"
+                  className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover object-top rounded-xl"
                 />
-                <div className="absolute inset-x-6 bottom-6 flex items-center gap-2 bg-black/70 text-white text-xs uppercase tracking-[0.3em] px-4 py-2 rounded-full border border-white/10">
+                <div className="absolute inset-x-4 sm:inset-x-6 bottom-4 sm:bottom-6 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 bg-black/70 text-white text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.3em] px-3 sm:px-4 py-2 rounded-full border border-white/10">
                   <span className="text-pink-200">Available for</span>
                   <span className="text-blue-200">freelance & full-time</span>
                 </div>

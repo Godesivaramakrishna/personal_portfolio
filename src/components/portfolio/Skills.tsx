@@ -166,22 +166,22 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-20 md:py-32 bg-black text-white relative" ref={ref}>
+    <section id="skills" className="py-16 sm:py-20 md:py-32 bg-black text-white relative" ref={ref}>
       <div className="container px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, type: "spring", stiffness: 80 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <span className="text-pink-200/70 font-medium text-sm uppercase tracking-[0.3em]">Skills</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mt-3 mb-4">
+          <span className="text-pink-200/70 font-medium text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em]">Skills</span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mt-3 mb-4">
             Technical{" "}
             <span className="bg-gradient-to-r from-pink-300 to-blue-300 bg-clip-text text-transparent">
               Expertise
             </span>
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto text-lg">
+          <p className="text-white/60 max-w-2xl mx-auto text-base sm:text-lg">
             A comprehensive toolkit for building cloud-native applications
           </p>
         </motion.div>
@@ -190,7 +190,7 @@ const Skills = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           {skillCategories.map((category, index) => (
             <motion.div
@@ -200,15 +200,15 @@ const Skills = () => {
                 y: -8,
                 transition: { type: "spring", stiffness: 300, damping: 20 }
               }}
-              className="rounded-2xl p-6 border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/[0.07] will-change-transform"
+              className="rounded-2xl p-5 sm:p-6 border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/[0.07] will-change-transform"
             >
               <div
-                className={`w-12 h-12 rounded-xl bg-gradient-to-r ${category.color} flex items-center justify-center mb-4 transition-transform duration-300 will-change-transform`}
+                className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-r ${category.color} flex items-center justify-center mb-4 transition-transform duration-300 will-change-transform`}
               >
-                <category.icon className="h-6 w-6 text-white" />
+                <category.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
               </div>
 
-              <h3 className="text-lg font-display font-semibold mb-4">{category.title}</h3>
+              <h3 className="text-base sm:text-lg font-display font-semibold mb-3 sm:mb-4">{category.title}</h3>
 
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill, skillIndex) => {
@@ -230,13 +230,13 @@ const Skills = () => {
                         backgroundColor: "rgba(255, 255, 255, 0.15)",
                         transition: { type: "spring", stiffness: 400, damping: 10 }
                       }}
-                      className={`px-3 py-1.5 rounded-lg text-sm border transition-all duration-200 flex items-center gap-1.5 will-change-transform ${skill === category.highlightSkill
+                      className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm border transition-all duration-200 flex items-center gap-1 sm:gap-1.5 will-change-transform ${skill === category.highlightSkill
                         ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white border-purple-300 font-semibold"
                         : "bg-white/10 text-white/70 border-white/10 hover:border-white/30"
                         }`}
                     >
                       {SkillIcon && (
-                        <SkillIcon className={`h-3.5 w-3.5 transition-transform duration-200 ${iconColor}`} />
+                        <SkillIcon className={`h-3 w-3 sm:h-3.5 sm:w-3.5 transition-transform duration-200 ${iconColor}`} />
                       )}
                       {skill}
                     </motion.span>

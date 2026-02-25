@@ -62,22 +62,22 @@ const CodingProfiles = () => {
   };
 
   return (
-    <section id="coding" className="py-20 md:py-32 relative bg-black text-white" ref={ref}>
+    <section id="coding" className="py-16 sm:py-20 md:py-32 relative bg-black text-white" ref={ref}>
       <div className="container px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <span className="text-pink-200/70 font-medium text-sm uppercase tracking-[0.3em]">Competitive Programming</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mt-3 mb-4">
+          <span className="text-pink-200/70 font-medium text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em]">Competitive Programming</span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mt-3 mb-4">
             Coding{" "}
             <span className="bg-gradient-to-r from-pink-300 to-blue-300 bg-clip-text text-transparent">
               Profiles
             </span>
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto text-lg">
+          <p className="text-white/60 max-w-2xl mx-auto text-base sm:text-lg">
             Consistent practice and problem-solving across multiple platforms
           </p>
         </motion.div>
@@ -87,33 +87,33 @@ const CodingProfiles = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex flex-wrap justify-center gap-8 mb-12"
+          className="flex flex-wrap justify-center gap-6 sm:gap-8 mb-12"
         >
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
-              <Code2 className="h-6 w-6 text-cyan-200" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/10 flex items-center justify-center">
+              <Code2 className="h-5 w-5 sm:h-6 sm:w-6 text-cyan-200" />
             </div>
             <div>
-              <p className="text-2xl font-bold">200+</p>
-              <p className="text-sm text-white/60">Problems Solved</p>
+              <p className="text-xl sm:text-2xl font-bold">200+</p>
+              <p className="text-xs sm:text-sm text-white/60">Problems Solved</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
-              <Trophy className="h-6 w-6 text-amber-300" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/10 flex items-center justify-center">
+              <Trophy className="h-5 w-5 sm:h-6 sm:w-6 text-amber-300" />
             </div>
             <div>
-              <p className="text-2xl font-bold">4</p>
-              <p className="text-sm text-white/60">Active Platforms</p>
+              <p className="text-xl sm:text-2xl font-bold">4</p>
+              <p className="text-xs sm:text-sm text-white/60">Active Platforms</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
-              <Star className="h-6 w-6 text-cyan-200" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/10 flex items-center justify-center">
+              <Star className="h-5 w-5 sm:h-6 sm:w-6 text-cyan-200" />
             </div>
             <div>
-              <p className="text-2xl font-bold">3★</p>
-              <p className="text-sm text-white/60">Max Rating</p>
+              <p className="text-xl sm:text-2xl font-bold">3★</p>
+              <p className="text-xs sm:text-sm text-white/60">Max Rating</p>
             </div>
           </div>
         </motion.div>
@@ -122,7 +122,7 @@ const CodingProfiles = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4"
         >
           {profiles.map((profile, index) => (
             <motion.a
@@ -134,7 +134,7 @@ const CodingProfiles = () => {
               transition={{ duration: 0.4 }}
               className="group"
             >
-              <div className="rounded-2xl p-6 h-full border border-white/10 bg-white/5 transition-all duration-300 hover:-translate-y-2 hover:border-white/20 relative overflow-hidden">
+              <div className="rounded-2xl p-5 sm:p-6 h-full border border-white/10 bg-white/5 transition-all duration-300 hover:-translate-y-2 hover:border-white/20 relative overflow-hidden">
                 {/* Gradient overlay on hover */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${profile.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
@@ -142,18 +142,18 @@ const CodingProfiles = () => {
 
                 <div className="relative z-10">
                   {/* Icon */}
-                  <div className={`w-14 h-14 rounded-xl ${profile.bgColor} flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl ${profile.bgColor} flex items-center justify-center text-xl sm:text-2xl mb-4 group-hover:scale-110 transition-transform duration-300`}>
                     {profile.icon}
                   </div>
 
                   {/* Name */}
-                  <h3 className="text-lg font-display font-bold mb-1 flex items-center gap-2">
+                  <h3 className="text-base sm:text-lg font-display font-bold mb-1 flex items-center gap-2">
                     {profile.name}
-                    <ExternalLink className="h-4 w-4 text-white/50 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ExternalLink className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white/50 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </h3>
 
                   {/* Stat */}
-                  <p className={`text-sm font-medium bg-gradient-to-r ${profile.color} bg-clip-text text-transparent`}>
+                  <p className={`text-xs sm:text-sm font-medium bg-gradient-to-r ${profile.color} bg-clip-text text-transparent`}>
                     {profile.stat}
                   </p>
                 </div>

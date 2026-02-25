@@ -109,10 +109,10 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-16 z-40 md:hidden"
+            className="fixed inset-x-0 top-16 md:top-20 z-40 md:hidden"
           >
             <div className="bg-black/95 backdrop-blur-xl border-b border-white/10">
-              <div className="container px-4 py-4 space-y-1">
+              <div className="container px-4 sm:px-6 py-4 space-y-1">
                 {navLinks.map((link) => (
                   <button
                     key={link.href}

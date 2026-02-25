@@ -37,60 +37,66 @@ const Contact = () => {
       icon: Github,
       label: "GitHub",
       href: "https://github.com/Godesivaramakrishna",
-      color: "text-pink-300 hover:text-pink-200",
+      color: "text-purple-400 hover:text-purple-300",
+      bgColor: "bg-purple-500/10 hover:bg-purple-500/20",
+      borderColor: "border-purple-500/20 hover:border-purple-500/40",
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/gsrk-durgaprasad-a00451291/",
-      color: "text-blue-300 hover:text-blue-200",
+      color: "text-blue-400 hover:text-blue-300",
+      bgColor: "bg-blue-500/10 hover:bg-blue-500/20",
+      borderColor: "border-blue-500/20 hover:border-blue-500/40",
     },
     {
       icon: Mail,
       label: "Email",
       href: "mailto:goderaja288@gmail.com",
-      color: "text-white/70 hover:text-white",
+      color: "text-pink-400 hover:text-pink-300",
+      bgColor: "bg-pink-500/10 hover:bg-pink-500/20",
+      borderColor: "border-pink-500/20 hover:border-pink-500/40",
     },
   ];
 
   return (
-    <section id="contact" className="py-20 md:py-32 bg-black text-white relative" ref={ref}>
+    <section id="contact" className="py-16 sm:py-20 md:py-32 bg-black text-white relative" ref={ref}>
       <div className="container px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <span className="text-pink-200/70 font-medium text-sm uppercase tracking-[0.3em]">Contact</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mt-3 mb-4">
+          <span className="text-pink-200/70 font-medium text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em]">Contact</span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mt-3 mb-4">
             Get In{" "}
             <span className="bg-gradient-to-r from-pink-300 to-blue-300 bg-clip-text text-transparent">
               Touch
             </span>
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto text-lg">
+          <p className="text-white/60 max-w-2xl mx-auto text-base sm:text-lg">
             Have a project in mind or want to collaborate? I'd love to hear from you!
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
+        <div className="grid gap-8 sm:gap-12 lg:grid-cols-5 max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-2 space-y-8"
           >
-            <div className="rounded-2xl p-6 border border-white/10 bg-white/5">
-              <h3 className="text-xl font-display font-semibold mb-6">Let's Connect</h3>
+            <div className="rounded-2xl p-5 sm:p-6 border border-white/10 bg-white/5">
+              <h3 className="text-lg sm:text-xl font-display font-semibold mb-6">Let's Connect</h3>
 
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
-                    <Mail className="h-5 w-5 text-pink-300" />
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
+                    <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-pink-300" />
                   </div>
                   <div>
-                    <p className="font-medium">Email</p>
+                    <p className="font-medium text-sm sm:text-base">Email</p>
                     <a
                       href="mailto:goderaja288@gmail.com"
                       className="text-white/60 hover:text-white transition-colors text-sm"
@@ -101,11 +107,11 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-5 w-5 text-pink-300" />
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-pink-300" />
                   </div>
                   <div>
-                    <p className="font-medium">Location</p>
+                    <p className="font-medium text-sm sm:text-base">Location</p>
                     <p className="text-white/60 text-sm">Andhra Pradesh, India</p>
                   </div>
                 </div>
@@ -120,7 +126,7 @@ const Contact = () => {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`p-3 rounded-xl bg-white/10 text-white/70 ${link.color} transition-all duration-300 hover:scale-110 border border-white/10`}
+                      className={`p-3 rounded-xl ${link.bgColor} ${link.color} transition-all duration-300 hover:scale-110 border ${link.borderColor}`}
                     >
                       <link.icon className="h-5 w-5" />
                     </a>
@@ -138,13 +144,13 @@ const Contact = () => {
             className="lg:col-span-3"
           >
             {state.succeeded ? (
-              <div className="rounded-2xl p-6 md:p-8 border border-white/10 bg-white/5">
-                <h3 className="text-xl font-display font-semibold mb-2">Thanks for reaching out!</h3>
-                <p className="text-white/60">Your message has been sent. I will get back to you soon.</p>
+              <div className="rounded-2xl p-5 sm:p-6 md:p-8 border border-white/10 bg-white/5">
+                <h3 className="text-lg sm:text-xl font-display font-semibold mb-2">Thanks for reaching out!</h3>
+                <p className="text-white/60 text-sm sm:text-base">Your message has been sent. I will get back to you soon.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="rounded-2xl p-6 md:p-8 space-y-6 border border-white/10 bg-white/5">
-                <div className="grid sm:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="rounded-2xl p-5 sm:p-6 md:p-8 space-y-5 sm:space-y-6 border border-white/10 bg-white/5">
+                <div className="grid gap-5 sm:gap-6 sm:grid-cols-2">
                   <div className="space-y-2">
                     <Label htmlFor="name">Your Name</Label>
                     <Input
