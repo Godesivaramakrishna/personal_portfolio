@@ -1,39 +1,10 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail, FileText, X } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, Download, FolderOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
-  const [showResume, setShowResume] = useState(false);
   return (
     <>
-      {/* Resume Modal */}
-      {showResume && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm"
-          onClick={() => setShowResume(false)}
-        >
-          <div
-            className="relative w-[90vw] max-w-4xl h-[90vh] bg-black rounded-2xl border border-white/10 overflow-hidden shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
-              <span className="text-sm font-medium text-white/70">Resume — Sivaramakrishna Durgaprasad</span>
-              <button
-                onClick={() => setShowResume(false)}
-                className="p-1.5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-colors"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </div>
-            <iframe
-              src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=0"
-              className="w-full h-[calc(100%-48px)]"
-              title="Resume"
-            />
-          </div>
-        </div>
-      )}
       <section className="relative min-h-screen bg-black text-white overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-10" />
         <div className="absolute inset-0 noise" />
@@ -80,12 +51,13 @@ const Hero = () => {
                 transition={{ duration: 0.7, delay: 0.1 }}
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-semibold leading-[1.1] uppercase"
               >
-                I bring the
-                <span className="block mt-2 bg-gradient-to-r from-pink-300 to-blue-300 bg-clip-text text-transparent">
-                  unexpected to
+                <span className="bg-gradient-to-r from-pink-300 to-blue-300 bg-clip-text text-transparent">
+                  Cloud & Backend
                 </span>
-                <span className="block mt-2 text-blue-200">cloud & digital</span>
-                <span className="block mt-2 text-white/90">experiences</span>
+                <span className="block mt-2 text-white/90">Developer</span>
+                <span className="block mt-3 text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl text-blue-200 font-medium">
+                  AWS · Serverless · Terraform
+                </span>
               </motion.h1>
 
               <motion.p
@@ -94,11 +66,10 @@ const Hero = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="mt-4 sm:mt-6 text-base sm:text-lg text-white/70 max-w-xl"
               >
+                Building scalable, resilient cloud systems —{" "}
                 <span className="bg-gradient-to-r from-pink-300 to-blue-300 bg-clip-text text-transparent font-medium">
-                  Cloud & Backend Developer
-                </span>{" "}
-                building resilient, scalable systems using AWS, serverless architectures,
-                and modern web technologies.
+                  open to full-time & freelance roles
+                </span>
               </motion.p>
 
               <motion.div
@@ -107,20 +78,21 @@ const Hero = () => {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="mt-6 sm:mt-8 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4"
               >
-                <button
-                  onClick={() => setShowResume(true)}
+                <a
+                  href="/resume.pdf"
+                  download="Sivaramakrishna_Resume.pdf"
                   className="inline-flex items-center justify-center bg-gradient-to-r from-pink-400 to-blue-400 text-black hover:from-pink-300 hover:to-blue-300 font-semibold px-6 sm:px-8 h-11 rounded-md w-full sm:w-auto transition-all"
                 >
-                  <FileText className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  View Resume
-                </button>
+                  <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  Download Resume (PDF)
+                </a>
                 <Button
                   size="lg"
                   variant="outline"
                   className="border-blue-300/50 text-blue-200 hover:bg-blue-500/10 font-semibold px-6 sm:px-8 w-full sm:w-auto"
                   onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
                 >
-                  <FileText className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  <FolderOpen className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                   View Projects
                 </Button>
               </motion.div>
@@ -129,29 +101,32 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="mt-6 sm:mt-10 flex items-center gap-3 sm:gap-4"
+                className="mt-6 sm:mt-10 flex flex-col gap-2.5"
               >
                 <a
                   href="https://github.com/Godesivaramakrishna"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-full border border-white/15 text-white/80 hover:text-white hover:border-white/40 transition-all duration-300"
+                  className="flex items-center gap-2 text-sm text-pink-300 hover:text-pink-200 transition-colors w-fit"
                 >
-                  <Github className="h-5 w-5 text-pink-300" />
+                  <Github className="h-3.5 w-3.5 shrink-0" />
+                  github.com/Godesivaramakrishna
                 </a>
                 <a
                   href="https://www.linkedin.com/in/gsrk-durgaprasad-a00451291/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-full border border-white/15 text-white/80 hover:text-white hover:border-white/40 transition-all duration-300"
+                  className="flex items-center gap-2 text-sm text-blue-300 hover:text-blue-200 transition-colors w-fit"
                 >
-                  <Linkedin className="h-5 w-5 text-blue-300" />
+                  <Linkedin className="h-3.5 w-3.5 shrink-0" />
+                  linkedin.com/in/gsrk-durgaprasad
                 </a>
                 <a
                   href="mailto:goderaja288@gmail.com"
-                  className="p-3 rounded-full border border-white/15 text-white/80 hover:text-white hover:border-white/40 transition-all duration-300"
+                  className="flex items-center gap-2 text-sm text-red-300 hover:text-red-200 transition-colors w-fit"
                 >
-                  <Mail className="h-5 w-5 text-red-400" />
+                  <Mail className="h-3.5 w-3.5 shrink-0" />
+                  goderaja288@gmail.com
                 </a>
               </motion.div>
             </div>
